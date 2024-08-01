@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMvEIO8JAulEj7rMxG93AjrrAy2F09MCKPVYW3G" crossorigin="anonymous">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: url('{{ url_for('static', filename='images/background.jpg') }}') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        nav {
+            background-color: rgba(0, 123, 255, 0.8); /* Change to a vibrant color */
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #fff; /* White color for better contrast */
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ffcc00; /* Yellow color on hover */
+        }
+
+        .banner {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .banner h1 {
+            color: #00FF00; /* Yellow color for the heading */
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin: 0 20px;
+            padding: 20px;
+            background-color: 0; /* Semi-transparent background */
+            border-radius: 10px;
+        }
+
+        footer {
+            background-color: rgba(0, 123, 255, 0.8); /* Change to a vibrant color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+        }
+
+        footer p {
+            margin: 0;
+            color: #fff; /* White color for better contrast */
+        }
+
+        footer a {
+            color: white; /* Yellow color for links */
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .message {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    {% if message %}
+    <div class="message">{{ message }}</div>
+    {% endif %}
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/about">About</a> |
+        {% if session.username %}
+        <a href="/predict">Predict</a> |
+        <a href="/deaths">Deaths</a> |
+        <a href="/activities">Activities</a> |
+        <a href="/data">Data</a> |
+        <a href="/model_accuracies">Model Accuracies</a> |
+        <a href="/register">Register</a>
+        {% else %}
+        <a href="/register">Register</a>
+        {% endif %}
+    </nav>
+    <div class="banner">
+        <h1>Innovative Machine Learning Solutions for Heart Health Prediction</h1>
+    </div>
+    <footer>
+        <p>&copy; 2024 Heart Health Prediction. <a href="https://www.google.com/search?gs_ssp=eJwFwcENwjAMAEDxhSX84V2DG6J2BLZwTdwYQSLVRmq35-58GdbhFvX7Vs94mq-407IQktAoqplZZ9zTfZzKlFSYFCk_nsk3A2cDax4WvyjQFaJIbf3T1wO4vcDFSpMCGx8stYf9AQvbI70&q=sri+sai+institute+of+technology+and+science+rayachoti&oq=sir+sai+ins&gs_lcrp=EgZjaHJvbWUqDwgBEC4YDRivARjHARiABDIGCAAQRRg5Mg8IARAuGA0YrwEYxwEYgAQyCQgCEAAYDRiABDIJCAMQABgNGIAEMgkIBBAAGA0YgAQyDwgFEC4YDRivARjHARiABDIJCAYQABgNGIAEMgsIBxAAGAoYDRiABDIJCAgQABgNGIAE0gEJNjM4ODFqMGo3qAIIsAIB&sourceid=chrome&ie=UTF-8#wptab=si:ACC90nwKCqn18xUkIoWW9U1iemEXdHTHJb_pJqjvbrZMxP_TdZMDbV9OjyE-lQxXPr1S_q6cpaX1-UD1J5We3Juqs7-lR_rtMAXYxNiMJR5d1u20VeBYiCJzxsOoPEYA7qrL_Ng_3dOqdenJIwO-abB_bjBkBsXcQtW5uCwBkem_PdJn_C3O-QOPsPRlJvFGyBvyuVT4lwnU">College done by</a> | 
+           <a href="/projectdone">Project Done by</a> | 
+           <a href="/projectguid">Project Guide</a></p>
+    </footer>
+</body>
+</html>

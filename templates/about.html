@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMvEIO8JAulEj7rMxG93AjrrAy2F09MCKPVYW3G" crossorigin="anonymous">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #85c1e9;
+            color: #333;
+        }
+        nav {
+            background-color: #007BFF;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #007BFF;
+        }
+        p, ol {
+            text-align: justify;
+        }
+        ol {
+            margin-left: 20px;
+        }
+        ol li {
+            margin-bottom: 10px;
+        }
+        .icon {
+            color: #007BFF;
+        }
+        footer {
+            background-color: rgba(0, 123, 255, 0.8); /* Change to a vibrant color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+        }
+
+        footer p {
+            margin: 0;
+            color: #fff; /* White color for better contrast */
+        }
+
+        footer a {
+            color: white; /* Yellow color for links */
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .message {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/"><i class="fas fa-home icon"></i> Home</a> |
+        <a href="/about"><i class="fas fa-info-circle icon"></i> About</a> |
+        {% if session.username %}
+        <a href="/predict"><i class="fas fa-stethoscope icon"></i> Predict</a> |
+        <a href="/deaths"><i class="fas fa-chart-line icon"></i> Deaths</a> |
+        <a href="/activities"><i class="fas fa-running icon"></i> Activities</a> |
+        <a href="/data"><i class="fas fa-database icon"></i> Data</a> |
+        <a href="/model_accuracies"><i class="fas fa-check-circle icon"></i> Model Accuracies</a> |
+        <a href="/register"><i class="fas fa-user-plus icon"></i> Register</a>
+        {% else %}
+        <a href="/register"><i class="fas fa-user-plus icon"></i> Register</a>
+        {% endif %}
+    </nav>
+    <div class="content">
+        <h2><i class="fas fa-heartbeat icon"></i> Heart</h2>
+        <p>
+            The human heart is a muscular organ located in the chest, slightly to the left of the center of the chest. Its main function is to pump blood throughout the body, delivering oxygen and nutrients to the cells and removing waste products.
+        </p>
+        <img src="{{ url_for('static', filename='images/heart.jpg') }}" alt="Heart Disease" style="width:40%;border-radius:3px;">
+        <p>
+            The heart has four chambers: the right atrium and right ventricle, and the left atrium and left ventricle. The atria are the upper chambers, while the ventricles are the lower chambers.
+            The right side of the heart pumps blood to the lungs to receive oxygen, while the left side of the heart pumps oxygen-rich blood to the rest of the body.
+            The heart is controlled by an electrical system that regulates the heartbeat. The sinoatrial (SA) node, located in the right atrium, is the natural pacemaker of the heart, and it initiates each heartbeat.
+        </p>
+
+        <p>
+            Heart disease is a leading cause of death worldwide, and it encompasses many different types of conditions, including:
+        </p>
+        <ol>
+            <li><b>Coronary artery disease</b>: This occurs when the blood vessels that supply the heart with blood become narrow or blocked due to the buildup of plaque, leading to chest pain or a heart attack.</li>
+            <li><b>Heart failure</b>: This occurs when the heart is unable to pump enough blood to meet the body's needs, leading to symptoms such as shortness of breath, fatigue, and swelling in the legs and feet.</li>
+            <li><b>Arrhythmias</b>: This refers to abnormal heart rhythms, which can cause the heart to beat too fast, too slow, or irregularly.</li>
+            <li><b>Heart valve disease</b>: This occurs when one or more of the heart valves do not function properly, leading to symptoms such as shortness of breath, chest pain, and fatigue.</li>
+            <li><b>Congenital heart disease</b>: This is a condition that is present at birth, and it involves structural problems with the heart or blood vessels.</li>
+        </ol>
+        <p>
+            Risk factors for heart disease include age, gender, family history, high blood pressure, high cholesterol, diabetes, smoking, obesity, and lack of physical activity. Lifestyle changes, such as a healthy diet, regular exercise, not smoking, and managing medical conditions, can help reduce the risk of heart disease. Treatment for heart disease may include medications, lifestyle changes, procedures such as angioplasty or bypass surgery, or implantable devices such as pacemakers.
+        </p>
+        <p>
+            There are several common reasons for heart disease in humans, including:
+        </p>
+        <ol>
+            <li><b>Unhealthy lifestyle choices</b>: Poor diet, lack of physical activity, smoking, excessive alcohol consumption, and stress can all contribute to the development of heart disease.</li>
+            <li><b>High blood pressure</b>: High blood pressure can cause damage to the arteries over time, leading to an increased risk of heart disease.</li>
+            <li><b>High cholesterol</b>: High levels of cholesterol in the blood can lead to the buildup of plaque in the arteries, which can increase the risk of heart disease.</li>
+            <li><b>Diabetes</b>: Diabetes can cause damage to the blood vessels, increasing the risk of heart disease.</li>
+            <li><b>Family history</b>: If a person has a family history of heart disease, they may be more likely to develop it themselves.</li>
+            <li><b>Aging</b>: As a person ages, their risk of heart disease increases.</li>
+            <li><b>Gender</b>: Men are generally at a higher risk of heart disease than women, although women's risk increases after menopause.</li>
+            <li><b>Medical conditions</b>: Certain medical conditions, such as obesity, sleep apnea, and autoimmune disorders, can increase the risk of heart disease.</li>
+        </ol>
+       
+        <p>
+            The solution for heart disease in humans varies depending on the type and severity of the condition. However, some general solutions and treatments for heart disease include:
+        </p>
+        <ol>
+            <li><b>Lifestyle changes</b>: Making healthy lifestyle choices, such as eating a balanced diet, exercising regularly, quitting smoking, and managing stress, can help prevent and manage heart disease.</li>
+            <li><b>Medications</b>: Certain medications, such as blood pressure medications, cholesterol-lowering medications, and blood thinners, can help manage and prevent heart disease.</li>
+            <li><b>Procedures</b>: Some heart conditions may require medical procedures, such as angioplasty, stenting, or bypass surgery, to restore blood flow to the heart.</li>
+            <li><b>Implantable devices</b>: Devices such as pacemakers and implantable cardioverter-defibrillators (ICDs) can help regulate the heart's rhythm and prevent sudden cardiac arrest.</li>
+            <li><b>Cardiac rehabilitation</b>: Rehabilitation programs that include exercise, nutrition counseling, and lifestyle education can help improve heart health and prevent future heart problems.</li>
+            <li><b>Emotional support</b>: Living with heart disease can be challenging, and emotional support from loved ones and healthcare providers can help patients cope and manage the condition.</li>
+        </ol>
+    </div>
+    <footer>
+        <p>&copy; 2024 Heart Health Prediction. <a href="https://www.google.com/search?gs_ssp=eJwFwcENwjAMAEDxhSX84V2DG6J2BLZwTdwYQSLVRmq35-58GdbhFvX7Vs94mq-407IQktAoqplZZ9zTfZzKlFSYFCk_nsk3A2cDax4WvyjQFaJIbf3T1wO4vcDFSpMCGx8stYf9AQvbI70&q=sri+sai+institute+of+technology+and+science+rayachoti&oq=sir+sai+ins&gs_lcrp=EgZjaHJvbWUqDwgBEC4YDRivARjHARiABDIGCAAQRRg5Mg8IARAuGA0YrwEYxwEYgAQyCQgCEAAYDRiABDIJCAMQABgNGIAEMgkIBBAAGA0YgAQyDwgFEC4YDRivARjHARiABDIJCAYQABgNGIAEMgsIBxAAGAoYDRiABDIJCAgQABgNGIAE0gEJNjM4ODFqMGo3qAIIsAIB&sourceid=chrome&ie=UTF-8#wptab=si:ACC90nwKCqn18xUkIoWW9U1iemEXdHTHJb_pJqjvbrZMxP_TdZMDbV9OjyE-lQxXPr1S_q6cpaX1-UD1J5We3Juqs7-lR_rtMAXYxNiMJR5d1u20VeBYiCJzxsOoPEYA7qrL_Ng_3dOqdenJIwO-abB_bjBkBsXcQtW5uCwBkem_PdJn_C3O-QOPsPRlJvFGyBvyuVT4lwnU">College done by</a> | 
+           <a href="/projectdone">Project Done by</a> | 
+           <a href="/projectguid">Project Guide</a></p>
+    </footer>
+</body>
+</html>

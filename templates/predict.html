@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Predict</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMvEIO8JAulEj7rMxG93AjrrAy2F09MCKPVYW3G" crossorigin="anonymous">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #85c1e9;
+            color: #333;
+        }
+        nav {
+            background-color: #007BFF;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1 {
+            text-align: center;
+            color: #240B3B;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2E2E2E;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .icon {
+            color: #fff;
+            margin-right: 5px;
+        }
+        footer {
+            background-color: rgba(0, 123, 255, 0.8); /* Change to a vibrant color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+        }
+
+        footer p {
+            margin: 0;
+            color: #fff; /* White color for better contrast */
+        }
+
+        footer a {
+            color: white; /* Yellow color for links */
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .message {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            font-size: 1.2em;
+        }
+    </style> 
+</head>
+<body>
+    <h1>Enter The Data</h1>
+    <nav>
+        <a href="/"><i class="fas fa-home icon"></i> Home</a> |
+        <a href="/about"><i class="fas fa-info-circle icon"></i> About</a> |
+        <a href="/predict"><i class="fas fa-stethoscope icon"></i> Predict</a> |
+        <a href="/deaths"><i class="fas fa-chart-line icon"></i> Deaths</a> |
+        <a href="/activities"><i class="fas fa-running icon"></i> Activities</a> |
+        <a href="/data"><i class="fas fa-database icon"></i> Data</a> |
+        <a href="/model_accuracies"><i class="fas fa-check-circle icon"></i> Model Accuracies</a> |
+        <a href="/register"><i class="fas fa-user-plus icon"></i> Register</a>
+    </nav>
+    <div class="container">
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" placeholder="Enter your age" required>
+            </div>
+            <div class="form-group">
+                <label for="sex">Sex:</label>
+                <input type="number" id="sex" name="sex" placeholder="Enter your sex (1 = male; 0 = female)" required>
+            </div>
+            <div class="form-group">
+                <label for="cp">Chest Pain Type (cp):</label>
+                <input type="number" id="cp" name="cp" placeholder="Enter chest pain type (1 = typical angina; 2 = atypical angina; 3 = non-angina pain; 4 = asymptomatic)" required>
+            </div>
+            <div class="form-group">
+                <label for="trestbps">Resting Blood Pressure (trestbps):</label>
+                <input type="number" id="trestbps" name="trestbps" placeholder="Enter resting blood pressure" required>
+            </div>
+            <div class="form-group">
+                <label for="chol">Cholesterol (chol):</label>
+                <input type="number" id="chol" name="chol" placeholder="Enter cholesterol level" required>
+            </div>
+            <div class="form-group">
+                <label for="fbs">Fasting Blood Sugar > 120 mg/dl (fbs):</label>
+                <input type="number" id="fbs" name="fbs" placeholder="Enter fasting blood sugar (1 = true; 0 = false)" required>
+            </div>
+            <div class="form-group">
+                <label for="restecg">Resting ECG (restecg):</label>
+                <input type="number" id="restecg" name="restecg" placeholder="Enter resting ECG results" required>
+            </div>
+            <div class="form-group">
+                <label for="thalach">Maximum Heart Rate Achieved (thalach):</label>
+                <input type="number" id="thalach" name="thalach" placeholder="Enter maximum heart rate achieved" required>
+            </div>
+            <div class="form-group">
+                <label for="exang">Exercise Induced Angina (exang):</label>
+                <input type="number" id="exang" name="exang" placeholder="Enter exercise induced angina (1 = yes; 0 = no)" required>
+            </div>
+            <div class="form-group">
+                <label for="oldpeak">ST Depression Induced by Exercise (oldpeak):</label>
+                <input type="number" step="0.1" id="oldpeak" name="oldpeak" placeholder="Enter ST depression value" required>
+            </div>
+            <div class="form-group">
+                <label for="slope">Slope of the Peak Exercise ST Segment (slope):</label>
+                <input type="number" id="slope" name="slope" placeholder="Enter slope of peak exercise ST segment (0 = up-slope, 1 = flat, 2 = down-slope)" required>
+            </div>
+            <div class="form-group">
+                <label for="ca">Number of Major Vessels (ca):</label>
+                <input type="number" id="ca" name="ca" placeholder="Enter number of major vessels" required>
+            </div>
+            <div class="form-group">
+                <label for="thal">Thalassemia (thal):</label>
+                <input type="number" id="thal" name="thal" placeholder="Enter thalassemia type" required>
+            </div>
+            
+            <input type="submit" value="Predict">
+        </form>
+    {% if result_message %}
+    <p>{{ result_message }}</p>
+    {% endif %}
+</div>
+<footer>
+    <p>&copy; 2024 Heart Health Prediction. <a href="https://www.google.com/search?gs_ssp=eJwFwcENwjAMAEDxhSX84V2DG6J2BLZwTdwYQSLVRmq35-58GdbhFvX7Vs94mq-407IQktAoqplZZ9zTfZzKlFSYFCk_nsk3A2cDax4WvyjQFaJIbf3T1wO4vcDFSpMCGx8stYf9AQvbI70&q=sri+sai+institute+of+technology+and+science+rayachoti&oq=sir+sai+ins&gs_lcrp=EgZjaHJvbWUqDwgBEC4YDRivARjHARiABDIGCAAQRRg5Mg8IARAuGA0YrwEYxwEYgAQyCQgCEAAYDRiABDIJCAMQABgNGIAEMgkIBBAAGA0YgAQyDwgFEC4YDRivARjHARiABDIJCAYQABgNGIAEMgsIBxAAGAoYDRiABDIJCAgQABgNGIAE0gEJNjM4ODFqMGo3qAIIsAIB&sourceid=chrome&ie=UTF-8#wptab=si:ACC90nwKCqn18xUkIoWW9U1iemEXdHTHJb_pJqjvbrZMxP_TdZMDbV9OjyE-lQxXPr1S_q6cpaX1-UD1J5We3Juqs7-lR_rtMAXYxNiMJR5d1u20VeBYiCJzxsOoPEYA7qrL_Ng_3dOqdenJIwO-abB_bjBkBsXcQtW5uCwBkem_PdJn_C3O-QOPsPRlJvFGyBvyuVT4lwnU">College done by</a> | 
+       <a href="/projectdone">Project Done by</a> | 
+       <a href="/projectguid">Project Guide</a></p>
+</footer>
+</body>
+</html>

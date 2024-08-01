@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMvEIO8JAulEj7rMxG93AjrrAy2F09MCKPVYW3G" crossorigin="anonymous">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ff7e5f); /* Gradient background */
+            height: 100vh;
+            display: flex;
+            justify-content: center; /* Center align the content */
+            align-items: center;
+            color: white;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%; /* Adjust width as needed */
+            background: #aed6f1; /* Semi-transparent background */
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+        .container {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .image-container {
+            flex: 1;
+            text-align: center;
+        }
+
+        .image-container img {
+            width: 90vh;
+            height: 95vh;
+            object-fit:cover;
+            border-radius: 10px;
+        }
+
+        h2 {
+            margin-top: 0;
+            text-align: left;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label, input, select {
+            margin-bottom: 10px;
+            color:#abebc6;
+        }
+        label {
+            text-align : left;
+            color:#e74c3c;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #abebc6;
+            color: #333;
+        }
+
+        input[type="submit"] {
+            background: #feb47b;
+            color: blue;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background: #ff7e5f;
+        }
+
+        .message {
+            margin-top: 20px;
+            color: #ffdd57;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="container">
+            <h2>Register</h2>
+            <form method="post">
+                <label for="first_name">First Name:</label>
+                <input type="text" name="first_name" placeholder="First Name" required>
+
+                <label for="last_name">Last Name:</label>
+                <input type="text" name="last_name" placeholder="Last Name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" name="email" placeholder="Email" required>
+
+                <label for="gender">Gender:</label>
+                <select name="gender" required>
+                    <option value="" disabled selected>Select your gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label for="username">Username:</label>
+                <input type="text" name="username" placeholder="Username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" name="password" placeholder="Password" required>
+
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+                <input type="submit" value="Register">
+            </form>
+            {% if message %}
+            <p class="message">{{ message }}</p>
+            {% endif %}
+        </div>
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='images/register_image.jpg') }}" alt="Registration Image">
+        </div>
+    </div>
+</body>
+</html>

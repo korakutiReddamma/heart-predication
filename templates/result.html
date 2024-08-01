@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMvEIO8JAulEj7rMxG93AjrrAy2F09MCKPVYW3G" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #85c1e9;
+            color: #333;
+        }
+        nav {
+            background-color: #007BFF;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1{
+            color:#2874a6;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prediction Result</h1>
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/about">About</a> |
+        <a href="/predict">Predict</a> |
+        <a href="/deaths">Deaths</a> |
+        <a href="/activities">Activities</a> |
+        <a href="/data">Data</a> |
+        <a href="/model_accuracies">Model Accuracies</a> |
+        <a href="/register">Register</a> 
+        
+    </nav>
+    <div class="container">
+        {% if prediction_result == "Positive" %}
+            <div class="result">The prediction result is positive. You are at risk of heart disease.</div>
+            <div class="emoji">😟</div>
+            <div class="precautions">
+                <h3>Precautions and Rectifications:</h3>
+                <ul>
+                    <li>Maintain a healthy diet rich in fruits, vegetables, and whole grains.</li>
+                    <li>Exercise regularly, aiming for at least 30 minutes of moderate activity most days of the week.</li>
+                    <li>Avoid smoking and limit alcohol intake.</li>
+                    <li>Manage stress through techniques like meditation, yoga, or deep breathing exercises.</li>
+                    <li>Keep your blood pressure, cholesterol, and diabetes under control by following your doctor's advice.</li>
+                    <li>Attend regular check-ups with your healthcare provider.</li>
+                    <li>Monitor your weight and take steps to lose weight if needed.</li>
+                </ul>
+            </div>
+        {% else %}
+            <div class="result">The prediction result is negative. You are not at risk of heart disease.</div>
+            <div class="emoji">😊</div>
+        {% endif %}
+    </div>
+    <div class="model-accuracies">
+        <h2>Model Accuracies</h2>
+        <a href="{{ url_for('model_accuracies') }}">View Model Accuracies</a>
+    </div>
+</body>
+</html>

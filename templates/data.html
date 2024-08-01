@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMvEIO8JAulEj7rMxG93AjrrAy2F09MCKPVYW3G" crossorigin="anonymous">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color:#85c1e9;
+            color: #333;
+        }
+        nav {
+            background-color: #007BFF;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #007BFF;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        .icon {
+            color: #fff;
+            margin-right: 5px;
+        }
+        footer {
+            background-color: rgba(0, 123, 255, 0.8); /* Change to a vibrant color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+        }
+
+        footer p {
+            margin: 0;
+            color: #fff; /* White color for better contrast */
+        }
+
+        footer a {
+            color: white; /* Yellow color for links */
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .message {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            font-size: 1.2em;
+        }
+    </style> 
+</head>
+<body>
+    <h1>Prediction Data</h1>
+    <nav>
+        <a href="/"><i class="fas fa-home icon"></i> Home</a> |
+        <a href="/about"><i class="fas fa-info-circle icon"></i> About</a> |
+        <a href="/predict"><i class="fas fa-chart-line icon"></i> Predict</a> |
+        <a href="/deaths"><i class="fas fa-heartbeat icon"></i> Deaths</a> |
+        <a href="/activities"><i class="fas fa-running icon"></i> Activities</a> |
+        <a href="/data"><i class="fas fa-database icon"></i> Data</a> |
+        <a href="/model_accuracies"><i class="fas fa-chart-bar icon"></i> Model Accuracies</a> |
+        <a href="/register"><i class="fas fa-user-plus icon"></i> Register</a>
+    </nav>
+    
+    <div class="container">
+        <h2>Data related to heart disease prediction</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Age</th>
+                    <th>Sex</th>
+                    <th>Chest Pain Type (cp)</th>
+                    <th>Resting BP (trestbps)</th>
+                    <th>Cholesterol (chol)</th>
+                    <th>Fasting Blood Sugar (fbs)</th>
+                    <th>Resting ECG (restecg)</th>
+                    <th>Max Heart Rate (thalach)</th>
+                    <th>Exercise Induced Angina (exang)</th>
+                    <th>ST Depression (oldpeak)</th>
+                    <th>Slope of ST (slope)</th>
+                    <th>Major Vessels (ca)</th>
+                    <th>Thalassemia (thal)</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in prediction_data %}
+                <tr>
+                    <td>{{ data.age }}</td>
+                    <td>{{ data.sex }}</td>
+                    <td>{{ data.cp }}</td>
+                    <td>{{ data.trestbps }}</td>
+                    <td>{{ data.chol }}</td>
+                    <td>{{ data.fbs }}</td>
+                    <td>{{ data.restecg }}</td>
+                    <td>{{ data.thalach }}</td>
+                    <td>{{ data.exang }}</td>
+                    <td>{{ data.oldpeak }}</td>
+                    <td>{{ data.slope }}</td>
+                    <td>{{ data.ca }}</td>
+                    <td>{{ data.thal }}</td>
+                    <td>{{ data.result }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        <h2>Dataset's Description</h2>
+        <div style="text-align: justify;">
+            1.  Age (*age*): Age of the patient at the time of health checkup<br>
+            2.  Sex (*sex*): 0 = Female and 1 = Male<br>
+            3.  Chest Pain (*cp*): 1 = Typical angina, 2 = Atypical angina, 3 = Non-anginal pain, 4 = Asymptotic<br>
+            4.  Resting Blood Pressure (*trtbps*): Resting blood pressure value of patient in mmHg (unit)<br>
+            5.  Cholesterol (*chol*): Cholesterol of patient in mg/dl (unit)<br>
+            6.  Fasting Blood Sugar (*fbs*): 1 = if fbs >120 mg/dl (true), else 0 = if not that (false)<br>
+            7.  Resting ECG (*restecg*): 0 = Normal, 1 = Having ST-T wave abnormality, 2 = Left ventricular hypertrophy<br>
+            8.  Max Heart Rate (*thalachh*): Maximum heart rate achieved by any patient<br>
+            9.  Exercise induced angina (*exng*): 0 = No and 1 = Yes<br>
+            10. Oldpeak (*oldpeak*): Displays the value of ST depression of any patient induced by exercise with respect to rest (float values)<br>
+            11. Slp (*slp*): Describes the peak of exercise during ST segment, 0 = up-slope, 1 = flat, 2 = down-slope<br>
+            12. Number of major vessels (*caa*): Classified in range 0 to 4 by coloring through fluoroscopy<br>
+            13. Thalassemia (*thall*): 1 = Normal, 2 = Fixed defect, 3 = Reversible defect<br>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Heart Health Prediction. <a href="https://www.google.com/search?gs_ssp=eJwFwcENwjAMAEDxhSX84V2DG6J2BLZwTdwYQSLVRmq35-58GdbhFvX7Vs94mq-407IQktAoqplZZ9zTfZzKlFSYFCk_nsk3A2cDax4WvyjQFaJIbf3T1wO4vcDFSpMCGx8stYf9AQvbI70&q=sri+sai+institute+of+technology+and+science+rayachoti&oq=sir+sai+ins&gs_lcrp=EgZjaHJvbWUqDwgBEC4YDRivARjHARiABDIGCAAQRRg5Mg8IARAuGA0YrwEYxwEYgAQyCQgCEAAYDRiABDIJCAMQABgNGIAEMgkIBBAAGA0YgAQyDwgFEC4YDRivARjHARiABDIJCAYQABgNGIAEMgsIBxAAGAoYDRiABDIJCAgQABgNGIAE0gEJNjM4ODFqMGo3qAIIsAIB&sourceid=chrome&ie=UTF-8#wptab=si:ACC90nwKCqn18xUkIoWW9U1iemEXdHTHJb_pJqjvbrZMxP_TdZMDbV9OjyE-lQxXPr1S_q6cpaX1-UD1J5We3Juqs7-lR_rtMAXYxNiMJR5d1u20VeBYiCJzxsOoPEYA7qrL_Ng_3dOqdenJIwO-abB_bjBkBsXcQtW5uCwBkem_PdJn_C3O-QOPsPRlJvFGyBvyuVT4lwnU">College done by</a> | 
+           <a href="/projectdone">Project Done by</a> | 
+           <a href="/projectguid">Project Guide</a></p>
+    </footer>
+</body>
+</html>
